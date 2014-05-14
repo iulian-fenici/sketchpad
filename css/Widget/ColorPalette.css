@@ -1,0 +1,149 @@
+/* palette
+----------------------------------- */
+#palette {
+	transition-property: bottom, background, width;
+	transition-duration: 250ms;
+	position: relative;
+	height: 50px;
+	background: transparent;
+	border-top: none;
+	border-bottom: none;
+	margin: auto;
+	width: 100%;
+	border-radius: 7px;
+	box-shadow: 0 0 1px 1px rgba(0,0,0,0.25);
+	bottom: -50px;
+	position: absolute;
+	width: 100%;
+	height: 50px;
+	z-index: 10;
+}
+
+#palette:hover,
+#palette:active,
+#palette.enabled {
+	bottom: 0;
+}
+
+#palette.disabled {
+	bottom: -50px;
+}
+
+#palette canvas {
+	transition-property: opacity;
+	transition-duration: .25s;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	z-index: -1;
+}
+
+#palette div.colorControl {
+	transition-property: opacity;
+	transition-duration: .35s;
+	color: #000; 
+	display: block; 
+	float: left;
+	top: 0px;
+	cursor: default;
+	position: relative;
+	height: 35px;
+	border-top: 15px solid rgba(0,0,0,0);
+	z-index: 1;
+}
+
+#palette div.colorControl.mask {
+	opacity: 0.9;
+	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+}
+
+#palette div.colorControl.hover,
+#palette div.colorControl {
+/*	border-top-color: #f00; */
+	height: 40px
+	z-index: 2;
+}
+
+#palette div.colorControl.selected {
+	border-bottom:0;
+	height: 50px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	position:relative;
+	top:-15px;
+	z-index: 3;	
+}
+#palette div.colorControl.selected:before {
+	content: "";
+	position: relative;
+	top: -15px;
+	display: block;
+	border-top: 1px solid rgba(255,255,255,0.3);
+	border-radius: 10px;
+	height: 20px;
+}
+
+/* MIDPOINT
+----------------------------------- */
+#palette div.centerPoint {
+	transition-property: opacity,background,color,border;
+	transition-duration: .25s;
+	cursor: pointer;
+	box-shadow: 0 0 3px rgba(255,255,255,0.5);
+	border-radius: 10px;
+	margin: auto;
+	border: 1px solid rgba(0,0,0,1);
+	background: #000;
+	height: 12px;
+	color: #bbb;
+	width: 4px;
+	font-size: 12px;
+	padding: 5px 9px 6px 6px;
+	position: relative;
+	bottom: -86px;
+	opacity: 0;
+	border-top: 0;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	cursor: ew-resize;
+	z-index: 0;
+    font-weight: bold;
+    text-indent: -3px;
+}
+#palette div.selected div.centerPoint {
+    bottom: -80px;
+}
+#palette div.selected div.centerPoint,
+#palette div.colorControl:hover div.centerPoint {
+	opacity: 1;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(130,130,130,0.5)), color-stop(1, rgba(0,0,0,0.5)));
+}
+
+/* resize
+----------------------------------- */
+#palette div.colorResize {
+	transition-property: opacity;
+	transition-duration: .25s;
+	background-image: url("../media/ux/colorResize.png");
+    background-position: 0 69px;
+    cursor: col-resize;
+    height: 50px;
+    top: -15px;
+    left: -4px;
+    opacity: 0;
+    position: absolute;
+    width: 9px;
+}
+#palette:hover div.colorResize {
+    opacity: 0.15;
+}
+#palette div div.colorResize.hovered,
+#palette div div.colorResize:hover {
+	background-color: #000;
+	opacity: 0.5;
+}
+#palette div.selected div.colorResize {
+    top: 0;
+    height: 50px;
+}

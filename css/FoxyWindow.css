@@ -1,0 +1,689 @@
+/* FOXYWINDOW
+-------------------------------------------------------------------*/
+div.foxywindow {
+	opacity: 0;
+	display: none;
+	-webkit-user-select: none;
+	-webkit-animation-name: heartbeat-out;
+	-webkit-animation-duration: 200ms;
+	-webkit-animation-iteration-count: 2;
+	-webkit-animation-timing-function: linear;
+	-webkit-transform-origin:50% 50%;
+	transition-property: opacity;
+	transition-duration: .25s;
+	font-size: 14px;
+	width: 252px;
+	position: fixed;
+	top: 50px;
+	left: 400px;
+	z-index: 100;
+	background: #0d0d0d;
+	background: -webkit-gradient(linear, left top, left 250, from(#444), color-stop(0.1, #222), to(#222));
+	background: -moz-linear-gradient(top, #444 0px, #222 25px, #222 250px);
+	box-shadow: 0 0 10px rgba(0,0,0,1);
+	text-shadow: 1px 1px 1px #000;
+	padding: 0;
+	border: 1px solid rgba(0,0,0,0.5);
+	border-top: 1px solid rgba(255,255,255,0.35);
+	border-radius: 3px;
+}
+@-webkit-keyframes heartbeat {
+	0% { -webkit-transform: scale(0); }
+	100% { -webkit-transform: scale(1); }
+}
+@-webkit-keyframes heartbeat-blink {
+	0% { -webkit-transform: scale(1); }
+	50% { -webkit-transform: scale(0.94); }
+	100% { -webkit-transform: scale(1); }
+}
+@-webkit-keyframes heartbeat-out {
+	0% { -webkit-transform: scale(1); }
+	100% { -webkit-transform: scale(1.5); }
+}
+#ColorPicker.opened, div.foxywindow.opened {
+	-webkit-animation-name: heartbeat;
+	-webkit-animation-duration: 200ms;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-timing-function: linear;
+	-webkit-transform-origin:50% 50%;
+	display: block;
+	opacity: 1;
+}
+#ColorPicker.opened.blink, div.foxywindow.opened.blink-stall {
+	-webkit-animation-name: none;
+}
+#ColorPicker.opened.blink, div.foxywindow.opened.blink {
+	-webkit-animation-name: heartbeat-blink;
+	-webkit-animation-duration: 200ms;
+	-webkit-animation-iteration-count: 2;
+	-webkit-animation-timing-function: linear;
+	-webkit-transform-origin:50% 50%;
+}
+div.foxywindow.closed {
+	transition-property: opacity;
+	transition-duration: 0.25s;
+	display: block;
+	opacity: 0;
+}
+#ColorPicker:hover, div.foxywindow:hover {
+	opacity: 1;
+}
+
+/* FOXYWINDOW : HEADER
+-------------------------------------------------------------------*/
+
+div.foxywindow .header {
+	padding: 4px 6px 0 8px;
+    margin-bottom: 2px;
+	min-height: 26px;
+	clear: both;
+}
+div.foxywindow .header-message {
+	float: left;
+	display: inline-block;
+	color: #8f8f8f;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 1.25em;
+}
+div.foxywindow .header-message span {
+	position: relative;
+    top: 3px;
+}
+div.foxywindow .content span.selectInfo {
+    font-size: 14px;
+    clear: both;
+    display: block;
+    margin: 10px 0 10px;
+}
+div.foxywindow .header-message select {
+	float: left;
+    position: relative;
+    margin-bottom: 7px;
+    left: -2px;
+    top: 0px;
+}
+div.foxywindow .close {
+	transition-property: color;
+	transition-duration: .25s;
+	color: #777; 
+	float: right;
+	position: relative;
+	left: 2px;
+	top: 1px;
+	padding: 2px 5px;
+	font-size: 20px;
+	line-height: 100%;
+	cursor: pointer;
+	opacity: 1;
+	text-shadow: none;
+}
+div.foxywindow .close:hover {
+	color: #FF48A6;
+}
+div.foxywindow .close span {
+	position: relative;
+	top: 2px;
+	padding: 5px 0;
+}
+
+/* FOXYWINDOW : SCROLLER
+-------------------------------------------------------------------*/
+div.foxywindow .scroller {
+	clear: both; 
+	margin-bottom: 4px;
+	width: 230px;
+	overflow: hidden;
+	overflow-y: auto;
+	position: relative;
+    margin-left: 6px;
+    background: #111;
+	background: -webkit-gradient(linear, left top, left bottom, from(#111), to(#222));
+	background: -moz-linear-gradient(top, #111 0%, #222 100%);
+    border-radius: 3px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid #111;
+    /* compensate for selected element expansion */
+    padding-top: 3px; 
+    padding-bottom: 3px;
+    padding-right: 6px;
+	top: -5px;
+}
+div.foxywindow .scroller::-webkit-scrollbar {
+    width: 17px;
+    background: #111;
+    border-radius: 10px;
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
+}
+div.foxywindow .scroller::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: inherit;
+}
+div.foxywindow .scroller::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+	background: -webkit-gradient(linear, left top, right top, from(#888), to(#666));
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+	border: 1px solid #000;
+}
+
+div.foxywindow .scroller canvas.text,
+div.foxywindow .scroller canvas.stamp,
+div.foxywindow .scroller canvas.clipart {
+	background: #111;
+	background: -webkit-linear-gradient(top left, #111 0%, #272727 100%);
+	background: -moz-linear-gradient(top left, #111 0%, #272727 100%);
+	float: left;
+    border-bottom: none;
+    border-right: none;
+	border-radius: 3px;
+	margin: 0;
+	padding: 4px;
+	cursor: pointer;
+}
+div.foxywindow .scroller canvas.stamp,
+div.foxywindow .scroller canvas.clipart {
+	width: 43px;
+	height: 43px;
+}
+div.foxywindow .scroller canvas.text {
+	width: 200px;
+	border-bottom: 1px solid #222;
+}
+div.foxywindow .scroller canvas.text.selected {
+	border-bottom: 1px solid rgba(0,0,0,0);
+}
+div.foxywindow .scroller div.noItemsAdded {
+	padding: 10px;
+}
+div.foxywindow .scroller canvas.selected {
+    z-index: 1;
+    position: relative;
+	box-shadow: 0 0 1px 1px rgba(58, 145, 255, 0.98);
+	background: rgba(58, 145, 255, 0.7);
+    background-image : -webkit-linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(255,255,255,0.3) 50%, rgba(0,0,0,0) 100%);
+    background-image : -moz-linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(255,255,255,0.3) 50%, rgba(0,0,0,0) 100%);
+}
+div.foxywindow .break {
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #2a2a2a;
+}
+div.foxywindow .credits {
+	clear: both;
+	color: #666;
+	font-style: italic;
+	padding: 0 0 4px 9px;
+	position: relative;
+	top: -2px;
+	cursor: default;
+}
+div.foxywindow .credits span {
+	color: #FD903B;
+}
+div.foxywindow .credits a {
+	transition-property: color;
+	transition-duration: .25s;
+    color: hsl(206, 80%, 50%);
+	font-weight: bold;
+	margin-left: 3px;
+}
+div.foxywindow .credits a:hover {
+	color: #FF3DBD;
+}
+div.foxywindow .content {
+	overflow: auto;
+	overflow-x: hidden;
+	color: #BBB; 
+	clear: both;
+}
+div.foxywindow .content .slider {
+	padding: 5px 8px 0px;
+}
+div.foxywindow .content .slider .title {
+	float: left; 
+	font-weight: bold;
+	cursor: default;
+}
+div.foxywindow .content .slider .values {
+	float: right; 
+	color: #444;
+	cursor: default;
+}
+div.foxywindow .content .slider .values input {
+	font-family: Capriola, arial, sans-serif;
+	color: #888; 
+	background: none;
+	border: none;
+	width: 35px;
+	text-align: center;
+}
+div.foxywindow .content .slider .value0 {
+	color: #888; 
+	padding-right: 3px;
+	cursor: text;
+}
+div.foxywindow .content .slider .value1 {
+	color: #888; 
+	padding-left: 3px;
+	cursor: text;
+}
+
+/* Palette
+-------------------------------------------------------------------*/
+#sketch-palette .scroller {
+	max-height: 165px;
+	overflow: hidden;
+	overflow-y: auto;
+}
+#sketch-palette .scroller li {
+	-webkit-transition-property: all;
+	-webkit-transition-duration: .25s;
+	-moz-transition-property: border;
+	-moz-transition-duration: .25s;
+   -webkit-transform: rotate(0);
+   -webkit-transform-origin: 50% 50%;
+   -moz-transform: rotate(0);
+   -moz-transform-origin: 50% 50%;
+	display: none;
+	list-style-type: none; margin: 0; 
+	padding: 0; float: left;
+	cursor: pointer;
+	border: 1px solid rgba(0,0,0,0);
+	position: relative;
+	left: 3px;
+}
+#sketch-palette .scroller.color li.color {
+	display: block;
+}
+#sketch-palette .scroller.gradient li.gradient {
+	display: block;
+}
+#sketch-palette .scroller li.selected {
+   -webkit-transform: rotate(135deg);
+   -webkit-transform-origin: 50% 50%;
+   -moz-transform: rotate(135deg);
+   -moz-transform-origin: 50% 50%;
+	border: 1px solid #000;
+	box-shadow: 0 0 5px #000;
+	z-index: 1000;
+}
+#sketch-palette .scroller li.selected a,
+#sketch-palette .scroller li.selected canvas {
+	border-radius: inherit;
+}
+#sketch-palette .scroller li:hover {
+	border: 1px solid #000;
+}
+#sketch-palette .scroller li a,
+#sketch-palette .scroller li canvas {
+	width: 19px;
+	height: 19px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: #FFF;
+	display: block;
+}
+
+/* Tabs
+---------------------------------------------- */
+div.foxywindow .tabs {
+	position: relative;
+	padding: 0 1px 0 0;
+	margin: 0;
+	top: 1px;
+}
+div.foxywindow .tabs li,
+div.foxywindow .tabs canvas {
+	box-shadow: inset 0 0 1px rgba(255,255,255,1);
+	border-right: 3px solid rgba(50,50,50,1);
+	font-size: 0.9em;
+	transition-property: background, color;
+	transition-duration: .25s;
+	text-shadow: none;
+	color: #000;
+	background: #8CD450;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#8CD450), to(#2a9400));
+    background-image: -moz-linear-gradient(top, #8CD450, #2a9400);
+	list-style-type: none;
+	display: inline-block;
+	cursor: pointer;
+	border: 0;
+	border-radius: 3px;
+	width: 42px;
+	height: 23px;
+	margin-right: 5px;
+}
+
+div#sketch-palette .tabs {
+	left: 2px;
+}
+div#sketch-palette .tabs li {
+	border: none;
+	border-radius: 3px;
+	margin-right: 3px;
+}
+div.foxywindow .tabs li:first-child {
+	border-top-left-radius: 3px;
+}
+div.foxywindow .tabs li:last-child {
+	border-bottom-right-radius: 3px;
+}
+div.foxywindow .tabs li:hover {
+	background: #FD903B;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FD903B), to(#dD701B));
+    background-image: -moz-linear-gradient(top, #FD903B, #dD701B);
+	color: #000;
+}
+div.foxywindow .tabs li.selected {
+	background: none;
+	color: #fff;
+}
+
+/* */
+
+div.foxywindow .data {
+	display: none;
+	padding: 2px 10px;
+}
+div.foxywindow h1 {
+	margin: 0;
+	color: #8CD450;
+	border-bottom: 1px solid #333;
+	padding-bottom: 0.05em;
+	background: #000;
+	margin-bottom: 0.5em;
+	margin-top: 0.25em;
+	margin-left: 0;
+	padding-left: 10px;
+	line-height: 2em;
+	white-space: nowrap;
+}
+div.foxywindow .leftBar {
+	width: 100%;
+	top: 60px; 
+	position: absolute;
+}
+div.foxywindow.subcontent .leftBar {
+	width: 14%;
+}
+div.foxywindow .leftBar .option {
+	cursor: pointer;
+	padding: 3px;
+	border-top: 1px solid #2f2f2f;
+	display: block;
+}
+div.foxywindow .leftBar .option:hover {
+	background: #1b1b1b;
+}
+div.foxywindow .leftBar .option.selected {
+	border-radius: 3px;
+	background: #8CD450;
+	background: -webkit-gradient(linear, left top, left bottom, from(#8CD450), to(#2a9400));
+	background-image: -moz-linear-gradient(top, #8CD450, #2a9400);
+	display: block;
+}
+div.foxywindow .text {
+	position: relative;
+	cursor: pointer;
+}
+div.foxywindow .text:hover {
+	color: #FFFFFF;
+}
+div.foxywindow .innerContent {
+	color: #ddd;
+	line-height: 2em;
+	margin: 7px 0 0 5%;
+	width: 81%;
+	left: 47px;
+	position: relative;
+}
+div.foxywindow .innerContent h1 {
+	margin-top: -5px;
+	padding: 0;
+}
+div.foxywindow h1 > a {
+	border-left: 1px solid rgba(255, 255, 255, 0.1);
+	margin-left: 5px;
+	padding-left: 10px;
+}
+div.foxywindow h1 img {
+	margin-right: 10px; 
+	position: relative; 
+	top: -2px;
+}
+div.foxywindow .service-icon {
+	cursor: pointer;
+	width: 40px;
+	display: inline-block;
+	margin-bottom: 15px;
+}
+div.foxywindow .service-icon:hover {
+	background: none;
+}
+div.foxywindow .service-icon img {
+	position: relative;
+	top: 7px;
+	left: 8px;
+}
+div.foxywindow .click-row {
+	cursor: pointer;
+	white-space: nowrap;
+	background: -webkit-gradient(linear, left top, left 250, from(#333), color-stop(0.3, #222), to(#000));
+	background-image: -moz-linear-gradient(top, #333, #000);
+}
+div.foxywindow .row {
+	margin-bottom: 2px;
+}
+div.foxywindow .row > input {
+	display: inline-block;
+}
+div.foxywindow .col1 {
+	width: 150px;
+	display: inline-block;
+}
+div.foxywindow .cmd {
+	width: 150px;
+	display: inline-block;
+	text-align: right;
+}
+div.foxywindow .header-break {
+	background: #111;
+	color: #bba;
+	border-radius: 5px;
+	text-shadow: none;
+	padding: 4px 12px;
+	margin: 7px 0;
+}
+div.foxywindow .header span {
+	color: #8f8f8f;
+}
+div.foxywindow span.title {
+	color: #bbb;
+	font-weight: normal;
+}
+div.foxywindow .link {
+	cursor: pointer;
+	position: relative;
+	top: -5px;
+}
+
+div.foxywindow#sketch-file .hr {
+	border-bottom: 1px solid #888;
+	opacity: 0.25;
+	position: relative; 
+	margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+/* open */
+#sketch-open .divider div.button div.import-file-start,
+#sketch-open .divider div.button div.open-file-start,
+#sketch-open .divider div.button {
+	background: #444; 
+	border-radius: 5px; 
+	padding: 7px 10px 6px 20px;
+    text-align: left;
+	margin: 0 0 3px 60px;
+	width: 250px;
+    float: left;
+	cursor: pointer;
+}
+#sketch-open .divider div.fakeInputContainer {
+	padding: 0px;
+}
+#sketch-open .divider div.button div {
+	width: auto;
+	padding: 0;
+	margin: 0;
+	background: #000;
+}
+#sketch-open .divider div.fakeInputContainer:hover div,
+#sketch-open .divider div.button:hover div.import-file-start,
+#sketch-open .divider div.button:hover div.open-file-start,
+#sketch-open .divider div.button:hover {
+	background: #999;
+	color: #000;
+	text-shadow: 1px 1px 1px #bbb;
+}
+#sketch-open .tree {
+	cursor: default;
+}
+#sketch-open .new-project select {
+	width: 80px;
+	position: relative;
+	top: -1px;
+}
+#sketch-open .new-project-sizing {
+
+}
+#sketch-open .new-project-sizing input {
+	width: 55px; 
+	padding: 4px 0 4px 7px;
+	margin: 0 7px 0 5px;
+	border-radius: 3px;
+	border: 0;
+}
+div.foxywindow .hr {
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #333;
+    clear:both;
+    width: 100%;
+}
+div.foxywindow .clear {
+    clear:both;
+    display: block;
+    position: relative;
+    padding: 4px;
+    width: 100%;
+}
+div.foxywindow .editor {
+    padding-bottom: 6px;
+}
+#sketch-open .divider {
+	padding: 9px 9px 10px;
+    text-align: right;
+}
+#sketch-palette .content,
+#sketch-open .content {
+    padding-top: 10px;
+    overflow: hidden;
+    background: #111;
+	background: -webkit-gradient(linear, left top, left bottom, from(#111), to(#222));
+	background-image: -moz-linear-gradient(top, #111, #222);
+}
+#sketch-open .content > div {
+	display: none;
+}
+#sketch-open .content > div.selected {
+	display: block;
+}
+#sketch-open .start {
+    
+}
+
+#sketch-open .new-project-listing,
+#sketch-open .open-project-listing {
+	background: none;
+	border: none;
+    padding: 3px 3px 3px;
+    overflow: auto;
+    overflow-x: hidden;
+    width: inherit;
+    height: 198px;
+	margin-right: 9px;
+}
+
+/* file entry */
+#sketch-open .fileEntry {
+    cursor: pointer;
+	box-shadow: 0 0 1px rgba(255,255,255,0.2);
+	position: relative; 
+    margin: 0;
+    float: left;
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2P8DwQMaODWrVvoQgyMQ0HhzZs3MTyjpqaG6ZkhoBAA2pQ0qYqIS+gAAAAASUVORK5CYII='); 
+    margin: 0 0 0px 0px;
+    border: 1px solid #000;
+    border-top: 1px solid #333;
+    display: inline-block;
+    height: 65px;
+    width: 65px;
+}
+#sketch-open .new-project .fileEntry {
+	height: 97px;
+    width: 155px;
+}
+#sketch-open .fileEntry:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 1;
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(0,0,0,.5)), color-stop(1, rgba(0,0,0,0)));
+	background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0));
+    height: inherit;
+    width: inherit;
+}
+#sketch-open .fileEntry.fileEntrySelected:after,
+#sketch-open .fileEntry:hover:after {
+	background: none;
+}
+#sketch-open .fileEntry.fileEntrySelected {
+    z-index: 1;
+	box-shadow: 0 0 2px 2px rgba(58, 145, 255, 0.98);
+	border-radius: 6px;
+}
+#sketch-open .fileEntry.fileEntrySelected canvas {
+	border-radius: 5px;
+}
+#sketch-open .fileEntry span {
+	pointer-events: none;
+	position: absolute; 
+	background: rgba(0,0,0,0.75); 
+    border-bottom: 1px solid rgba(0,0,0,1);
+    text-align: center; 
+    font-weight: normal;
+    width: inherit;
+	padding: 5px 0 4px;
+	color: #fff;
+    text-shadow: 1px 1px #000;
+}
+
+/* sketchpad */
+#sketchpad .content {
+	position: relative;
+}
+#sketchpad .header {
+	position: relative;
+	width: 100%;
+	display: none;
+}
+#sketchpad.foxywindow {
+	opacity: 1;
+	padding: 0 10px;
+}
+#sketchpad.foxywindow .header {
+	display: block;
+}

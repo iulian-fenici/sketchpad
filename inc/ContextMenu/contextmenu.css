@@ -1,0 +1,128 @@
+/* THEMED FOR SKETCH-SPECTRA */
+
+body > div._contextmenu_screen_ {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    display: none;
+    opacity: 1.0;
+    -webkit-transition: opacity 0.15s linear;
+    overflow: hidden;
+	z-index: 120000;
+}
+body > cmenu {
+    display: none;
+}
+._contextmenu_screen_ cmenu.fadeout {
+    -webkit-transition: opacity 0.15s linear;
+}
+._contextmenu_screen_ cmenu {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+._contextmenu_screen_ menuitem{
+    display: block;
+	white-space:nowrap;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+._contextmenu_screen_ > cmenu {
+    
+    position: fixed;
+    display: none;
+    cursor: default;
+    z-Index: 30000;
+    user-select: none;
+    -webkit-user-select: none;
+    list-style: none;
+}
+
+._contextmenu_screen_ menuitem:before{
+    content: attr(label);
+}
+
+._contextmenu_screen_ cmenu *{
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+}
+._contextmenu_screen_ cmenu menuitem{
+    -webkit-user-drag: none;
+}
+
+
+
+._contextmenu_screen_ > cmenu {
+    background-color:rgba(0,0,0,1);
+    
+    -moz-background-clip: padding;     /* Firefox 3.6 */
+	-webkit-background-clip: padding;  /* Safari 4? Chrome 6? */
+	background-clip: padding-box;      /* Firefox 4, Safari 5, Opera 10, IE 9 */
+	
+    color: white;
+    border: 1px solid rgba(255,255,255, 0.3);
+    border-radius: 5px;
+    padding: 1px 1px;
+	box-shadow: 0 0 10px rgba(0,0,0,1);
+    font-size: 16px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+._contextmenu_screen_ > cmenu.submenu {
+    border-top-left-radius: 0px;
+}
+._contextmenu_screen_ cmenu > .submenu:after{
+    content: "\25B6";
+    float: right;
+    position: relative;
+    left: 14px;
+    top: 2px;
+    font-size: 16px;
+    color: #404040;
+}
+
+._contextmenu_screen_ cmenu > .submenu:hover:after{
+    color: white;
+}
+._contextmenu_screen_ cmenu > .submenu[open=true]:after{
+    color: white;
+}
+
+._contextmenu_screen_ cmenu menuitem img,
+._contextmenu_screen_ cmenu menuitem span {
+	padding-right: 5px;
+    font-size: 16px;
+}
+._contextmenu_screen_ cmenu menuitem{
+	cursor: pointer;
+	font-size: 14px;
+	color: #fff;
+    padding: 5px 25px 5px 10px;
+    border-bottom: 1px solid #333;
+}
+._contextmenu_screen_ cmenu menuitem:last-child {
+	border: 0;
+}
+._contextmenu_screen_ cmenu menuitem:hover{
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(54, 107, 245,1)), to(rgba(54, 107, 245,0.69)));
+    color: white;
+}
+._contextmenu_screen_ cmenu menuitem.submenu[open=true]{
+    background: #3c6ff7 url(repeat-x.png) repeat-x;
+    color: white;
+}
+._contextmenu_screen_ cmenu hr {
+    height:0px;
+    border: none;
+    /* results in background: #e3e3e3; */
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    margin: 0 1px;
+}

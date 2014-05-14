@@ -1,0 +1,167 @@
+/*!
+ * -------------------------------------------------------------------
+ * Avgrund - Modal concept which aims to give a sense of depth.
+ * <http://lab.hakim.se/avgrund>
+ * -------------------------------------------------------------------
+ * Copyright (C) 2012 Hakim El Hattab <http://hakim.se>
+ * 
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+#avgrund-html {
+	overflow: auto;
+	overflow-x: hidden;
+	height: 100%; 
+	padding-right: 15px;
+}
+.avgrund-data {
+	display: none;
+}
+.avgrund-active body {
+	-webkit-transform: scale( 0.9 );
+	   -moz-transform: scale( 0.9 );
+		-ms-transform: scale( 0.9 );
+		 -o-transform: scale( 0.9 );
+			transform: scale( 0.9 );
+}
+.avgrund-cover {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	visibility: hidden;
+	opacity: 0;
+}
+.avgrund-active .avgrund-cover {
+	visibility: visible;
+	opacity: 1;
+}
+.avgrund-contents {
+	width: inherit;
+	height: inherit;
+	overflow: hidden;
+}
+.avgrund-popup .close {
+	background: #fff;
+	width: 46px;
+	height: 46px;
+	position: absolute;
+	top: -25px;
+	right: -23px;
+	cursor: pointer;
+	opacity: 1;
+	transition-property: opacity, background;
+	transition-duration: .25s;
+}
+.avgrund-popup .close:hover {
+	opacity: 0.9;
+	background: #fff;
+}
+.avgrund-popup .close:active {
+	opacity: 1;
+}
+.avgrund-popup {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url("../media/ux/interlace-diagonal.png");
+	margin: 0;
+	visibility: hidden;
+	opacity: 0;
+	z-index: 100000;
+}
+.avgrund-popup div::-webkit-scrollbar {
+    width: 17px;
+    background: #000;
+    border-radius: 10px;
+}
+.avgrund-popup div::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    background: #272727;
+    border-radius: 10px;
+}
+.avgrund-popup div::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+	background: -webkit-gradient(linear, left top, right top, from(#444441), to(#333330));
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+	border: 1px solid #000;
+}
+.avgrund-popup > div {
+	position: relative;
+	height: 70%;
+	width: 70%;
+	min-width: 600px;
+	max-width: 1280px;
+	max-height: 1280px;
+	margin: 70px auto;
+	padding: 20px;
+	border: 1px solid rgba(0,0,0,0.5);
+	border-top: 1px solid #494949;
+	border-bottom: 1px solid #000;
+	border-radius: 15px;
+	background: #272727;
+	background-image: url("../media/ux/woodgrain-dark.png");
+	box-shadow: 0 0 20px 2px rgba(0,0,0,1);
+	color: #E7ECE0;
+	text-shadow: 2px 2px 0 #000;
+}
+.avgrund-active .avgrund-popup {
+	visibility: visible;
+	opacity: 1;
+
+	-webkit-transform: scale( 1.1 );
+	   -moz-transform: scale( 1.1 );
+		-ms-transform: scale( 1.1 );
+		 -o-transform: scale( 1.1 );
+			transform: scale( 1.1 );
+}
+.avgrund-ready body,
+.avgrund-ready .avgrund-contents,
+.avgrund-ready .avgrund-popup,
+.avgrund-ready .avgrund-cover {
+	-webkit-transform-origin: 50% 50%;
+	   -moz-transform-origin: 50% 50%;
+	    -ms-transform-origin: 50% 50%;
+	     -o-transform-origin: 50% 50%;
+	        transform-origin: 50% 50%;
+	transition: 0.3s all cubic-bezier(0.250, 0.460, 0.450, 0.940);
+	   -moz-transition: 0.3s all cubic-bezier(0.250, 0.460, 0.450, 0.940);
+	    -ms-transition: 0.3s all cubic-bezier(0.250, 0.460, 0.450, 0.940);
+	     -o-transition: 0.3s all cubic-bezier(0.250, 0.460, 0.450, 0.940);
+	        transition: 0.3s all cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
+.avgrund-ready .avgrund-popup.no-transition {
+	transition: none;
+	   -moz-transition: none;
+	    -ms-transition: none;
+	     -o-transition: none;
+	        transition: none;
+}
+
+li {
+	list-style-type: square;
+	color: #444;
+}

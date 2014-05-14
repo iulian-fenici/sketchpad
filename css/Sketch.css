@@ -1,0 +1,110 @@
+/* CANVAS SETTINGS
+--------------------------------------------------------------------------------*/
+#sketchpad {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	-webkit-user-select: none;
+}
+
+#sketchpad canvas {
+	-ms-touch-action: none;
+ /* prevent default IE10+ */
+	cursor: default;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* TEXT AREA 
+-------------------------------------------------------------------*/
+div.textareaWrapper {
+	opacity: 1;
+	display: none;
+	z-index: 100;
+	padding: 0;
+	margin: 0;
+	border-bottom: 1px solid rgba(210,220,255,0.25);
+	position: absolute;
+	background: rgba(210,220,255,0.25);
+	overflow: hidden;
+}
+
+div.textareaWrapper div.textarea {
+	z-index: 0;
+	padding: 0;
+	margin: 0,
+	word-wrap: break-word;
+	white-space: pre-wrap;
+	position: static;
+	outline: none;
+	border: 0;
+	color: rgba(255, 0, 0, 1);
+	cursor: text;
+	background: none;
+	width: 100%;
+	font: inherit; /* keep this */
+	-webkit-user-select: text;
+}
+
+div.textareaWrapper div.textarea:after {
+	content: attr(data-content);
+	text-shadow: none;
+	word-wrap: break-word;
+	white-space: pre-wrap;
+	width: inherit;
+	padding: inherit;
+	position: absolute;
+	z-index: -1;
+	left: -4px;
+	top: 0;
+}
+
+/* Snapshot animation
+------------------------------------*/
+#snapshot {
+	transition: opacity 200ms ease-out;
+	opacity: 0;
+	background: rgba(255,255,255,0.75);
+	z-index: 99999;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#snapshot.fadein {
+	transition: opacity 50ms ease;
+	opacity: 1;
+}
+  
+/* PRINT
+-------------------------------------------------------------------*/
+html body #print {
+	display: none;
+}
+
+@media print {
+	html * {
+		display: none;
+		visibility: hidden;
+	}
+
+	html body {
+		display: block;
+		visibility: visible;
+		background: none;
+	}
+
+	html body #print,
+	html body #print canvas {
+		display: block;
+		visibility: visible;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: none;
+	}
+}

@@ -1,0 +1,40 @@
+<link rel='stylesheet' href="contextmenu.css" type="text/css" media="all" />
+<script type="text/javascript" src="contextmenu.js"></script>
+<body>
+  <div class="container page">
+	<script type="text/javascript">
+	var contextmenu = EnableContextMenu(document, window);
+  	var menu = contextmenu([{
+  			label: "First Item",
+  			onclick: function (e) {
+  				document.body.style.background = "black";
+  				setTimeout(function () {
+  					document.body.style.background = "";
+  				}, 500);
+  			}
+  		}, {
+  			label: "Second Item"
+  		}, {
+  			hr: true
+  		}, {
+  			label: "Sub menu",
+  			children: [{
+  					label: "Another Item"
+  				}
+  			]
+  		}
+  	]);
+  	///
+  	var div = document.createElement("div");
+  	div.innerHTML = "blah blah blah";
+  	document.body.appendChild(div);
+	contextmenu.attach(div, menu);
+	///
+  	var button = document.createElement("input");
+  	button.type = "button";
+  	button.value = "blah";
+  	document.body.appendChild(button);
+	contextmenu.attach(button, menu);
+	///
+  </script>
+</body>
